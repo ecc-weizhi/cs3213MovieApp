@@ -4,8 +4,12 @@
   Views: {},
   Routers: {},
   initialize: function(){
-    alert('Hello');
+    var mainView = new MovieApp.Views.Main();
+    mainView.render(); 
+
   }
+
+
 }
 
 $(document).ready(function(){

@@ -54,5 +54,6 @@ MovieApp::Application.routes.draw do
   #     resources :products
   #   end
 
-  root 'main#index'
+ root 'main#index'
+  
 end
