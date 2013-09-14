@@ -1,16 +1,9 @@
 MovieApp.Models.MovieModel = Backbone.Model.extend({
-  /*
-  defaults: {
-    avg_score: -1,	
-    id: -1,
-    title: 'default',
-    updated_at: 'default',
-    img_url: 'default',
-    user: null
+  url: function(){
+    return this.instanceUrl;
   },
-  */
   
-  initialize : function() {
-
-  }
+  initialize: function(id){
+    this.instanceUrl = "http://cs3213.herokuapp.com/movies/" + id["id"] + ".json";
+  } 
 })
