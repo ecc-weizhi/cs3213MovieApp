@@ -13,8 +13,7 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
   },
 
   movie: function(id) {
-    var movieView = new MovieApp.Views.MovieDetailView();
-    movieView.render();
+    var movieView = new MovieApp.Views.MovieDetailView({"id":id});
   },
   
   createMovie: function(){
