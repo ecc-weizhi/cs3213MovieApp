@@ -5,9 +5,7 @@
   <title>Super Movie App</title>
   <%= stylesheet_link_tag 'bootstrap.css' %> 
 </head>
-
 <body>
-
   <!--Start of nav bar-->
   <div class="navbar navbar-inverse">  
     <div class="navbar-inner">  
@@ -19,7 +17,7 @@
           </li>
 
           <li class="active">  
-              <a href="index.html">Index</a>
+              <a href="javascript: window.location='';">Index</a>
 
 <!--Add more links -->
 <!--           <li>
@@ -27,6 +25,10 @@
 
           <li> -->
 
+          </li>
+          <li class="active">
+              <a href="#myMovies">My Movies</a>
+          </li>
           </li>
         </ul>
 
@@ -47,7 +49,7 @@
   <!--Start of body-->
 
   <p>Signed in successfully!</p>
-
+  <div id='pageBody'></div>
 
   <script src="twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>  
   <script src="twitter-bootstrap-v2/docs/assets/js/bootstrap-dropdown.js"></script> 
