@@ -4,18 +4,21 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
   routes: {
     "":                 "index",    // #help
     "movie/:id":        "movie",  // #search/kiwis
+    "create":	"createMovie"
   },
 
   index: function() {
-    alert('in mainRouter. "" is found');
-    //var movieModel = new MovieApp.Model.Movie();
-    
     //create a view to display all movie.
     var myIndexView = new MovieApp.Views.IndexView();
   },
 
   movie: function(id) {
-    var movieView = new MovieApp.Views.MovieDetail();
+    var movieView = new MovieApp.Views.MovieDetailView();
     movieView.render();
+  },
+  
+  createMovie: function(){
+    var myMovieCreateView = new MovieApp.Views.MovieCreateView();
+    myMovieCreateView.render();
   }
 });

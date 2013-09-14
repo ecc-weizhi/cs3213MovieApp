@@ -1,4 +1,5 @@
 MovieApp.Models.MovieModel = Backbone.Model.extend({
+  /*
   defaults: {
     avg_score: -1,	
     id: -1,
@@ -7,6 +8,7 @@ MovieApp.Models.MovieModel = Backbone.Model.extend({
     img_url: 'default',
     user: null
   },
+  */
   
   initialize : function() {
 
