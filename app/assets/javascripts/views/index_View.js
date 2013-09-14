@@ -18,6 +18,8 @@ MovieApp.Views.IndexView = Backbone.View.extend({
   },
 
   render : function() {
+    console.log(this.myMovieCollection);
+    
     //This is the render function for this view. We will craft the view here.
     var current = this;
     $(this.el).html("<h1>Below is the tiled display</h1>");
