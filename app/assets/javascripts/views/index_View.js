@@ -7,9 +7,9 @@ MovieApp.Views.IndexView = Backbone.View.extend({
     //Fetch the data from http://cs3213.herokuapp.com/movies.json 
     //when we initialize this view
     
-    this.myMovieCollection = new MovieApp.Collections.MovieCollection();
-    this.myMovieCollection.fetch({reset: true});
-    this.myMovieCollection.bind('reset', this.render, this)
+    this.collection = new MovieApp.Collections.MovieCollection();
+    this.collection.fetch({reset: true});
+    this.collection.bind('reset', this.render, this);    
   },
 
   events: {
@@ -18,14 +18,14 @@ MovieApp.Views.IndexView = Backbone.View.extend({
   },
 
   render : function() {
-    console.log(this.myMovieCollection);
+    console.log(this.collection);
     
     //This is the render function for this view. We will craft the view here.
     var current = this;
     $(this.el).html("<h1>Below is the tiled display</h1>");
     $(this.el).append("<div id='buttonArea'><button class='CreateMovie' type='button'>Create new movie</button><div>");
 
-    this.myMovieCollection.each(function(myMovie) {
+    this.collection.each(function(myMovie) {
       var myMovieSimpleView = new MovieApp.Views.MovieSimpleView(myMovie);
       $(current.el).append(myMovieSimpleView.render().el);
     });
@@ -35,5 +35,8 @@ MovieApp.Views.IndexView = Backbone.View.extend({
 
   create_new_movie : function() {
     window.router.navigate("create", {trigger: true});
-  }
+  },
+
+  
+
 })

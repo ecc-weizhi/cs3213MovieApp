@@ -21,7 +21,7 @@ class MainController < ApplicationController
   def redirect
   	@token = @client_obj.auth_code.get_token(params[:code], :redirect_uri => @redirect_url)
     session['token'] = @token.token
-    #render :text =>@token.token
+    # render :text =>@token.token
     redirect_to root_url
   end
 
