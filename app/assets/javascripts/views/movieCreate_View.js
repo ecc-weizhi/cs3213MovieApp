@@ -8,7 +8,9 @@ MovieApp.Views.MovieCreateView = Backbone.View.extend({
 
   events: {
     //create an event "click on Create class" will trigger function "submit_movie_info" 
-    "click .Create": "submit_movie_info"
+    "click .Create": "submit_movie_info",
+    //create an event "click on Back class" will trigger function "back_to_list" 
+    "click .Back": "back_to_list"
   },
 
   render: function() {
@@ -19,7 +21,7 @@ MovieApp.Views.MovieCreateView = Backbone.View.extend({
     $(this.el).append("Title: <input type='text' id='titleInput'><br>");
     $(this.el).append("Summary: <input type='text' id='summaryInput'><br>");
     $(this.el).append("img: <input type='file' id='imgInput'><br>");
-    $(this.el).append("<button class='Create' type='button'>Create</button>");
+    $(this.el).append("<button class='Create' type='button'>Create</button><button class='Back' type='button'>Back to list</button>");
     $(this.el).append("</form>");
     $(this.el).append("</div>");
 
@@ -43,5 +45,9 @@ MovieApp.Views.MovieCreateView = Backbone.View.extend({
     //myNewMovie.save(obj,  {success: function(){ alert("win"); } });
 
     //window.router.navigate("create", {trigger: true});
+  },
+
+  back_to_list : function() {
+    window.router.navigate("", {trigger: true});
   }
 })
