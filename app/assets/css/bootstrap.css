@@ -4418,7 +4418,7 @@ input[type="submit"].btn.btn-mini {
   margin-left: -20px;
   font-size: 20px;
   font-weight: 200;
-  color: #777777;
+  font-color: #6698FF;
   text-shadow: 0 1px 0 #ffffff;
 }
 
@@ -4816,7 +4816,7 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar-inverse .brand {
-  color: #999999;
+  color: #6698FF;
 }
 
 .navbar-inverse .navbar-text {
