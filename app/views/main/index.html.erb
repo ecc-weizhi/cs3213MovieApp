@@ -1,13 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Super Movie App</title>
-    
-  </head>
+<head>
+  <meta charset="utf-8">
+  <title>Super Movie App</title>
+  <%= stylesheet_link_tag 'bootstrap.css' %> 
+</head>
 
-  <body>
-    <div id=pageBody></div>
-  </body>
+<body>
+
+  <!--Start of nav bar-->
+  <div class="navbar navbar-inverse">  
+    <div class="navbar-inner">  
+      <div class="container">  
+        <ul class="nav">  
+        <!--navigation does here-->  
+          <li class="brand">  
+            Super Movie App
+          </li>
+
+          <li class="active">  
+              <a href="index.html">Index</a>
+
+<!--Add more links -->
+<!--           <li>
+           <a href="add.html">Add</a>
+
+          <li> -->
+
+          </li>
+        </ul>
+
+        <ul class="nav pull-right">  
+          <li>
+
+          </li>     
+          <li>
+            <a href="logout.html">Logout</a>
+          </li>
+        </ul>
+      </div>  
+    </div>  
+  </div>   
+
+  <!--End of nav bar-->
+
+  <!--Start of body-->
+
+  <p>Signed in successfully!</p>
+
+
+  <script src="twitter-bootstrap-v2/docs/assets/js/jquery.js"></script>  
+  <script src="twitter-bootstrap-v2/docs/assets/js/bootstrap-dropdown.js"></script> 
+</body>
 </html>
-
