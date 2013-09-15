@@ -29,7 +29,7 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
   },
 
   getUserMovies : function() {
-    var username = "darren080589";
+    var username = this.getUserName(gon.user_email);
     var userMovies = new Backbone.Collection;
     var current =  this;
 
@@ -59,16 +59,6 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
 
   deleteMovie : function(id) { 
     var movieToRemove =  this.movieCollection.get(id);
-      
-    // var reviewCollection = new MovieApp.Collections.ReviewCollection({"id":id});
-
-    // reviewCollection.fetch({
-    //   success : function() {
-    //     reviewCollection.each(function(reviewModel) {
-    //       alert(reviewModel.get('comment'));
-    //     });
-    //   }
-    // });   
     
     //Deleting Movie from server using AJAX
     $.ajax({
@@ -116,6 +106,18 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
 
   },
 
+  getUserName : function(userEmail) {
+    var username = "";
+
+    for(var i=0; i<userEmail.length; i++) {
+        if(userEmail[i] == "@")
+          return username;
+        else 
+          username += userEmail[i];        
+    }
+
+    return "";
+  }
 
 
 
