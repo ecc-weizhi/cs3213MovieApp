@@ -23,15 +23,17 @@ MovieApp.Views.MovieDetailView = Backbone.View.extend({
   },
 
   events: {
-    //create an event "click on Back class" will trigger function "back_to_list" 
-    "click .Back": "back_to_list"
+    "click .IndexNav": "go_index",
+    "click .MyMoviesNav": "go_my_movie",
+    "click .LogoutNav": "go_logout"
   },
 
   render: function() {
     //we keep a variable pointing to "this" because "this" can change later
     var current = this;
 
-    $(this.el).html("<div id='buttonArea'><button class='Back' type='button'>Back to list</button><div>")
+    var myNavBarView = new MovieApp.Views.NavBarView();
+    $(this.el).html(myNavBarView.render().el);
 
     $(this.el).append("<div id='movieDetail'>");
     $(this.el).append("<h1>" + this.myMovie.get("title") + "</h1>");
@@ -50,6 +52,20 @@ MovieApp.Views.MovieDetailView = Backbone.View.extend({
 
 
   back_to_list : function() {
+    window.router.navigate("", {trigger: true});
+  },
+
+  go_index : function() {
+    console.log("a");
+    window.router.navigate("", {trigger: true});
+  },
+  
+  go_my_movie : function() {
+    window.router.navigate("myMovies", {trigger: true});
+  },
+
+  go_logout : function() {
+    alert("c");
     window.router.navigate("", {trigger: true});
   }
 })
