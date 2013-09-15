@@ -49,8 +49,13 @@ MovieApp.Views.UserMoviesView = Backbone.View.extend({
 		window.router.navigate("editMovie/" + document.getElementById('hiddenVal').innerHTML, {trigger : true});
 	},
 
-	deleteMovie : function() {			
-		window.router.navigate("deleteMovie/" + document.getElementById('hiddenVal').innerHTML, {trigger : true});
+	deleteMovie : function() {	
+		var userResponse = confirm("Are you sure you want to delete this movie?");	
+
+		if(userResponse)	
+			window.router.navigate("deleteMovie/" + document.getElementById('hiddenVal').innerHTML, {trigger : true});
+		else 
+			return;
 	},
 
 });

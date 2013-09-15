@@ -2,8 +2,9 @@ require 'oauth2'
 
 class MainController < ApplicationController
 	before_filter :client
-  
-  def index
+
+  def index    
+    gon.token = session[:token]
   end 
 
   def client
@@ -22,7 +23,7 @@ class MainController < ApplicationController
   def redirect
   	@token = @client_obj.auth_code.get_token(params[:code], :redirect_uri => @redirect_url)
     session[:token] = @token.token
-    #render :text =>session[:token]
+    #render :text =>session[:token]   
     redirect_to root_url
   end
 
@@ -34,6 +35,5 @@ class MainController < ApplicationController
   def login
   	redirect_to @client_obj.auth_code.authorize_url(:redirect_uri => @redirect_url)
   end
-
 
 end

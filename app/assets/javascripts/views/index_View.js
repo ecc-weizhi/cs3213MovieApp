@@ -26,7 +26,7 @@ MovieApp.Views.IndexView = Backbone.View.extend({
     //This is the render function for this view. We will craft the view here.
     var myNavBarView = new MovieApp.Views.NavBarView();
     $(this.el).html(myNavBarView.render().el);
-    
+      
     $(this.el).append("<h1>Below is the tiled display</h1>");
     $(this.el).append("<div id='buttonArea'><button class='CreateMovie' type='button'>Create new movie</button><div>");
 
@@ -34,6 +34,7 @@ MovieApp.Views.IndexView = Backbone.View.extend({
       var myMovieSimpleView = new MovieApp.Views.MovieSimpleView(myMovie);
       $(current.el).append(myMovieSimpleView.render().el);
     });
+
 
     return this;
   },
