@@ -18,18 +18,17 @@
 
           <li class="active"> 
               <a href="javascript: window.location='';">Index</a>
-
-
-<!--Add more links -->
-<!--           <li>
-           <a href="add.html">Add</a>
-
-          <li> -->
-
           </li>
+
+
+          <li class="active">
+              <a href="#create">New</a>
+          </li>
+
           <li class="active">
               <a href="#myMovies">My Movies</a>
           </li>
+
          
         </ul>
 
@@ -50,6 +49,10 @@
   <!--Start of body-->
 
   <p>Signed in successfully!</p>
+  <% if logged_in %>
+  Access Token: <%=  token_str %>
+  <% else %>
+  <% end %>
 
   <div id='pageBody'></div>
 
