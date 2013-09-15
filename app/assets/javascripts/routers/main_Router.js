@@ -65,8 +65,7 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
         data: {"access_token": gon.token },
         url: 'https://cs3213.herokuapp.com/movies/' + id + '.json',
         type: 'DELETE',
-        success: function(result) {
-            alert('The movie ' +  movieToRemove.get('title') + ' was deleted successfully!');
+        success: function(result) {            
             window.router.navigate("myMovies", {trigger: true});
         }
     });
