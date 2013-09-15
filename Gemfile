@@ -26,3 +26,4 @@ end
 
 gem 'oauth2'
 gem 'backbone-on-rails'
+gem 'gon'

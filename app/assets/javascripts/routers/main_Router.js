@@ -1,7 +1,7 @@
 MovieApp.Routers.MainRouter = Backbone.Router.extend({
   //This file will list which methods to perform base on the url.
   movieCollection: null,
-
+  
   routes: {
     "":                 "index",    // #help
     "movie/:id":        "movie",  // #search/kiwis
@@ -9,15 +9,14 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
     "myMovies" : "getUserMovies",
     "deleteMovie/:id" : "deleteMovie",
     "editMovie/:id" : "editMovie",
-    "updateMovie/:id" : "updateMovie",
+    "updateMovie/:id/:title/:summary" : "updateMovie",
     "logout": "userLogout",
 
   },
 
   index: function() {
     //create a view to display all movie.
-    var myIndexView = new MovieApp.Views.IndexView(); 
-       
+    var myIndexView = new MovieApp.Views.IndexView();   
   },
 
   movie: function(id) {
@@ -59,45 +58,56 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
   },
 
   deleteMovie : function(id) { 
-    // var movieToRemove =  this.movieCollection.get(id);
-
+    var movieToRemove =  this.movieCollection.get(id);
       
-    var reviewCollection = new MovieApp.Collections.ReviewCollection({"id":id});
+    // var reviewCollection = new MovieApp.Collections.ReviewCollection({"id":id});
 
-    reviewCollection.fetch({
-      success : function() {
-        reviewCollection.each(function(reviewModel) {
-          alert(reviewModel.get('comment'));
-        });
-      }
+    // reviewCollection.fetch({
+    //   success : function() {
+    //     reviewCollection.each(function(reviewModel) {
+    //       alert(reviewModel.get('comment'));
+    //     });
+    //   }
+    // });   
+    
+    //Deleting Movie from server using AJAX
+    $.ajax({
+        data: {"access_token": gon.token },
+        url: 'https://cs3213.herokuapp.com/movies/' + id + '.json',
+        type: 'DELETE',
+        success: function(result) {
+            alert('The movie ' +  movieToRemove.get('title') + ' was deleted successfully!');
+            window.router.navigate("myMovies", {trigger: true});
+        }
     });
 
-    //this.movieCollection.remove(this.movieCollection.get(id));
-
-    // $.ajax({
-    //  data: {"access_token": ""},
-    //     url: 'https://cs3213.herokuapp.com/movies/' + id + '.json',
-    //     type: 'DELETE',
-    //     success: function(result) {
-    //         alert('The movie ' +  modelToRemove.get('title') + ' deleted successfully!');
-    //     }
-    // });
-
-    //window.router.navigate("myMovies", {trigger: true});
+    //Removing Movie from Model
+    this.movieCollection.remove(this.movieCollection.get(id));
+    
   },
 
-  updateMovie : function(id) {
-    var modelToUpdate = this.movieCollection.get(id);
+  updateMovie : function(id,title,summary) {
+    alert(title + summary);
+   $.ajax({
+        data: {"access_token": gon.token, "title": title, "summary": summary },
+        url: 'https://cs3213.herokuapp.com/movies/' + id + '.json',
+        type: 'PUT',
+        success: function(result) {
+            alert('The movie ' +  title + ' was updated successfully!');
+           
 
-    // this.movieCollection.each(function(movieModel) {
-    //   if(movieModel.get('id') == id) {
-    //     modelToUpdate = movieModel;        
-    //     return;           
-    //   }       
-    // });
+            var updatedModel = new MovieApp.Models.MovieModel({"id":id});
 
-    alert('The movie was editted successfully!');
-    window.router.navigate("myMovies", {trigger: true});
+            updatedModel.fetch({
+              success : function() {
+                alert(updatedModel.get('title'));
+                //window.router.navigate("myMovies", {trigger: true});
+              }
+            });   
+        }
+    });  
+
+   
 
   }, 
 

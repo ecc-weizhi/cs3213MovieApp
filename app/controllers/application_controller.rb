@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
   helper_method :token_str
 
   def logged_in
-  	session[:token].present?
+  	return session[:token].present?
   end
 
   def token_str
-  	session[:token]
+  	return session[:token]
   end
 
 end

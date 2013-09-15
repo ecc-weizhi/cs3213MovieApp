@@ -2,8 +2,9 @@ require 'oauth2'
 
 class MainController < ApplicationController
 	before_filter :client
-  
-  def index
+
+  def index    
+    gon.token = session[:token]
   end 
 
   def client
@@ -20,6 +21,7 @@ class MainController < ApplicationController
   end
 
   def redirect
+<<<<<<< HEAD
   	@user_token= @client_obj.auth_code.get_token(params[:code], :redirect_uri => @redirect_url)
     @user_url = "http://cs3213.herokuapp.com/users/current.json?access_token=#{@user_token.token}"
     @user_info = JSON.parse(Net::HTTP.get(URI.parse(@url)))
@@ -42,6 +44,5 @@ class MainController < ApplicationController
 
   	redirect_to @client_obj.auth_code.authorize_url(:redirect_uri => @redirect_url)
   end
-
 
 end
