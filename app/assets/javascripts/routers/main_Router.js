@@ -1,12 +1,13 @@
 MovieApp.Routers.MainRouter = Backbone.Router.extend({
   //This file will list which methods to perform base on the url.
-  movieCollection: null,
-  
+  pageCount: 1,
+  tempCollection: Backbone.Collection,
+
   routes: {
     "":                 "index",    // #help
     "movie/:id":        "movie",  // #search/kiwis
     "create":	"createMovie",
-    "myMovies" : "getUserMovies",
+    "myMovies/:type" : "getUserMovies",
     "deleteMovie/:id" : "deleteMovie",
     "editMovie/:id" : "editMovie",
     "updateMovie/:id/:title/:summary" : "updateMovie",
@@ -28,29 +29,33 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
     myMovieCreateView.render();
   },
 
-  getUserMovies : function() {
+  getUserMovies : function(type) {
     var username = this.getUserName(gon.user_email);
-    var userMovies = new Backbone.Collection;
-    var current =  this;
+    var current =  this;       
 
-    this.movieCollection = new MovieApp.Collections.MovieCollection();
-    this.movieCollection.fetch({
-      success: function() {
-        current.movieCollection.each(function(userMovie) {
-          var userMovieModel = new Backbone.Model(userMovie.get('user'));
+    if(type == "new") {
+      current.tempCollection = new Backbone.Collection;
+      current.pageCount = 1;
+    }         
 
-          if(userMovieModel.get("username") == username)
-            userMovies.push(userMovie);
-        });
+    var movieCollection = new MovieApp.Collections.MovieCollection(this.pageCount);
+    movieCollection.fetch({
+      success : function() {
+        if(movieCollection.length != 0) {
+          movieCollection.each(function(aMovie) {
+            var movieModel = new Backbone.Model(aMovie.get("user"));
+            if(movieModel.get("username") == username) 
+              current.tempCollection.push(aMovie);
+          });
 
-        current.loadUserMovies(userMovies);
+          current.pageCount += 1;
+          window.router.navigate("myMovies/" + current.pageCount, {trigger : true});
+
+        } else {          
+            var userMoviesView = new MovieApp.Views.UserMoviesView(current.tempCollection);
+        }
       }
     }); 
-  },
-
-  loadUserMovies : function(userMovies) {
-    var userMoviesView = new MovieApp.Views.UserMoviesView(userMovies);
-    //console.log(userMovies);
   },
 
   editMovie : function(id) {
@@ -58,7 +63,8 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
   },
 
   deleteMovie : function(id) { 
-    var movieToRemove =  this.movieCollection.get(id);
+    //Delete all reviews from the movie in the server
+    this.deleteMovieReviews(id);
     
     //Deleting Movie from server using AJAX
     $.ajax({
@@ -66,19 +72,37 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
         url: 'https://cs3213.herokuapp.com/movies/' + id + '.json',
         type: 'DELETE',
         success: function(result) {            
-            window.router.navigate("myMovies", {trigger: true});
+            window.router.navigate("myMovies/new", {trigger: true});
         }
     });
-
-    //Removing Movie from Model
-    this.movieCollection.remove(this.movieCollection.get(id));
     
+  },
+
+  deleteMovieReviews : function(movieID) {
+    //Fetches all reviews tagged to the movie of the given movie id and proceed to delete them
+    var reviewCollection = new MovieApp.Collections.ReviewCollection({"id": movieID});
+    var current = this;
+
+    reviewCollection.fetch({
+      success : function() {
+        reviewCollection.each(function(movieReview) {
+          if(movieReview.get("user")["username"] == current.getUserName(gon.user_email)) {
+              $.ajax({
+                data: {"access_token": gon.token },
+                url: 'https://cs3213.herokuapp.com/movies/' + movieID + '/reviews/' + movieReview.get('id') + '.json',
+                type: 'DELETE',
+                success: function(result) {}
+            });
+          }          
+        });
+      }
+    });
   },
 
   updateMovie : function(id,title,summary) {
     alert(title + summary);
    $.ajax({
-        data: {"access_token": gon.token, "title": title, "summary": summary },
+        data: {"access_token": gon.token, "title": title, "summary": summary, "img_url": "sdasdasda"},
         url: 'https://cs3213.herokuapp.com/movies/' + id + '.json',
         type: 'PUT',
         success: function(result) {
@@ -94,10 +118,7 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
               }
             });   
         }
-    });  
-
-   
-
+    }); 
   }, 
 
   userLogout : function(){
@@ -117,7 +138,5 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
 
     return "";
   }
-
-
 
 });

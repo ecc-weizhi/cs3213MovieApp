@@ -32,28 +32,28 @@ MovieApp.Views.EditMovieView = Backbone.View.extend({
 		var summary = document.getElementById('summary').value
 		// this.model.set("title", );
 		// this.model.set("summary", document.getElementById('summary').value);	
-		var filename = document.getElementById('imageUpload').value;
-		var lastIndex = filename.lastIndexOf("\\");
+		// var filename = document.getElementById('imageUpload').value;
+		// var lastIndex = filename.lastIndexOf("\\");
 		
-    	if (lastIndex >= 0) 
-        	filename = filename.substr(lastIndex + 1);
+  //   	if (lastIndex >= 0) 
+  //       	filename = filename.substr(lastIndex + 1);
 
-		$.ajax({
-		    type: 'PUT',
-		    url: 'app/public/',
-		    processData: false,
-		    contentType: false,
-		    data: filename,
-		    success: function() { alert("file upload success"); },
-		    error: function() { alert("file upload failure"); }
-		  });
+		// $.ajax({
+		//     type: 'PUT',
+		//     url: 'app/public/',
+		//     processData: false,
+		//     contentType: false,
+		//     data: filename,
+		//     success: function() { alert("file upload success"); },
+		//     error: function() { alert("file upload failure"); }
+		//   });
   
 
-		//window.router.navigate("updateMovie/" + this.model.get('id') + "/" + title + "/" + summary, {trigger : true});
+		window.router.navigate("updateMovie/" + this.model.get('id') + "/" + title + "/" + summary, {trigger : true});
 	}, 
 	
 	returnToUserMovies : function() {
-		window.router.navigate("myMovies", {trigger : true});
+		window.router.navigate("myMovies/new", {trigger : true});
 	},
 
 

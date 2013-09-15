@@ -24,8 +24,8 @@ class MainController < ApplicationController
     :site => 'http://cs3213.herokuapp.com', 
     :authorize_url => '/oauth/new')
 
-    #@redirect_url = "http://localhost:3000/redirect"
-    @redirect_url = "http://super-movie-app.herokuapp.com/redirect"
+    @redirect_url = "http://localhost:3000/redirect"
+    #redirect_url = "http://super-movie-app.herokuapp.com/redirect"
   end
 
   def redirect
@@ -48,7 +48,6 @@ class MainController < ApplicationController
   end
 
   def login
-
   	redirect_to @client_obj.auth_code.authorize_url(:redirect_uri => @redirect_url)
   end
 
