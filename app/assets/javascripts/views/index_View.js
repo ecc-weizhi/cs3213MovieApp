@@ -19,7 +19,7 @@ MovieApp.Views.IndexView = Backbone.View.extend({
     "click .LogoutNav": "go_logout"
   },
 
-  render : function() {
+ render2 : function() {
     console.log(this.collection);
     var current = this;
     
@@ -38,6 +38,84 @@ MovieApp.Views.IndexView = Backbone.View.extend({
 
     return this;
   },
+
+
+    render : function() {
+    var current = this;
+    var myNavBarView = new MovieApp.Views.NavBarView();
+    var movieRenderString = "<table cellpadding='20'>";
+    var count = 0;
+
+    this.collection.each(function(myMovie) {
+     var myMovieSimpleView = new MovieApp.Views.MovieSimpleView(myMovie);
+
+      if(count == 0)
+        movieRenderString += "<tr height=400>";
+      
+      if(count < 4) {
+        movieRenderString += "<td width=25%>" + myMovieSimpleView.render().$el.html() + "</td>";
+        count++;  
+      }       
+
+      if(count == 4) {
+        count = 0;
+        movieRenderString += "</tr>";
+      } 
+      
+    });
+
+    movieRenderString += "</table>";
+    movieRenderString += "<label id='hiddenVal' style='visibility: hidden;'></label>";
+
+
+    var myNavBarView = new MovieApp.Views.NavBarView();
+      $(current.el).html(myNavBarView.render().el);
+      
+    $(current.el).append(movieRenderString);
+
+
+    return this;
+  },  
+
+
+    render3 : function() {
+    var current = this;
+    var myNavBarView = new MovieApp.Views.NavBarView();
+
+    $(this.el).html(myNavBarView.render().el);
+
+    $(current.el).append("<table cellpadding=20>");
+    var count = 0;
+
+    this.collection.each(function(myMovie) {
+     var myMovieSimpleView = new MovieApp.Views.MovieSimpleView(myMovie);
+
+      if(count == 0)
+        $(current.el).append("<tr height=400>");
+      
+      if(count < 4) {
+        $(current.el).append("<td width='25%'>55");
+        $(current.el).append(myMovieSimpleView.render().el);
+        $(current.el).append("</td>");
+        count++;  
+      }       
+
+      if(count == 4) {
+        count = 0;
+        $(current.el).append("</tr>");
+      } 
+      
+    });
+
+   $(current.el).append("</table>");
+  $(current.el).append("<label id='hiddenVal' style='visibility: hidden;'></label>");
+
+      
+  //  $(current.el).append(movieRenderString);
+
+
+    return this;
+  },  
 
   create_new_movie : function() {
     window.router.navigate("create", {trigger: true});
