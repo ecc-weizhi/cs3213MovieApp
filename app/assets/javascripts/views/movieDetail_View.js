@@ -65,7 +65,6 @@ MovieApp.Views.MovieDetailView = Backbone.View.extend({
   },
 
   go_logout : function() {
-    alert("c");
     window.router.navigate("", {trigger: true});
   }
 })

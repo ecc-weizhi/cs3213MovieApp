@@ -51,7 +51,6 @@ MovieApp.Views.IndexView = Backbone.View.extend({
   },
 
   go_logout : function() {
-    alert("c");
-    window.router.navigate("", {trigger: true});
+    window.location="logout.html";
   }
 })

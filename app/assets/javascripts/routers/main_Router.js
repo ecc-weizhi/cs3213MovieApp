@@ -10,6 +10,7 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
     "deleteMovie/:id" : "deleteMovie",
     "editMovie/:id" : "editMovie",
     "updateMovie/:id" : "updateMovie",
+    "logout": "userLogout",
 
   },
 
@@ -98,5 +99,13 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
     window.router.navigate("myMovies", {trigger: true});
 
   }, 
+
+  userLogout : function(){
+    window.router.navigate("logout", {trigger: true});
+
+  },
+
+
+
 
 });
