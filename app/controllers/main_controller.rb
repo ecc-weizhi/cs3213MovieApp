@@ -20,9 +20,16 @@ class MainController < ApplicationController
   end
 
   def redirect
-  	@token = @client_obj.auth_code.get_token(params[:code], :redirect_uri => @redirect_url)
-    session[:token] = @token.token
+  	@user_token= @client_obj.auth_code.get_token(params[:code], :redirect_uri => @redirect_url)
+    @user_url = "http://cs3213.herokuapp.com/users/current.json?access_token=#{@user_token.token}"
+    @user_info = JSON.parse(Net::HTTP.get(URI.parse(@url)))
+
+    session[:user_id] = @user_info["id"]
+    session[:user_email] = @user_info["email"]
+    session[:user_token] = @user_token.token
     #render :text =>session[:token]
+    #render :text =>@url
+    #render :text =>@info
     redirect_to root_url
   end
 
@@ -32,6 +39,7 @@ class MainController < ApplicationController
   end
 
   def login
+
   	redirect_to @client_obj.auth_code.authorize_url(:redirect_uri => @redirect_url)
   end
 

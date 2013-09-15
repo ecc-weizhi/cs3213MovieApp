@@ -24,3 +24,4 @@ MovieApp.Views.NavBarView = Backbone.View.extend({
     return this;
   },
 })
+
