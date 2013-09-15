@@ -16,7 +16,8 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
 
   index: function() {
     //create a view to display all movie.
-    var myIndexView = new MovieApp.Views.IndexView();    
+    var myIndexView = new MovieApp.Views.IndexView(); 
+       
   },
 
   movie: function(id) {

@@ -13,7 +13,9 @@ MovieApp.Views.EditMovieView = Backbone.View.extend({
 	},
 
 	render : function() {
-		$(this.el).html(this.template);	
+		var myNavBarView = new MovieApp.Views.NavBarView();
+    	$(this.el).html(myNavBarView.render().el);
+		$(this.el).append(this.template);	
 		document.getElementById('title').value = this.model.get('title');
 		document.getElementById('summary').value = this.model.get('summary');
 

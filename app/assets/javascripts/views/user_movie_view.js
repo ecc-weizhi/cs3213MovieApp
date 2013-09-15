@@ -1,15 +1,15 @@
 MovieApp.Views.UserMovieView = Backbone.View.extend({
-  el: "#pageBody",
+  // el: "#pageBody",
   
   initialize : function(movieModel) {
     this.model = movieModel;
   },
 
-  events: {
-    "click .IndexNav": "go_index",
-    "click .MyMoviesNav": "go_my_movie",
-    "click .LogoutNav": "go_logout"
-  },
+  // events: {
+  //   "click .IndexNav": "go_index",
+  //   "click .MyMoviesNav": "go_my_movie",
+  //   "click .LogoutNav": "go_logout"
+  // },
 
   render : function() {
     var avg_score = new Number(this.model.get('avg_score'));
@@ -28,26 +28,23 @@ MovieApp.Views.UserMovieView = Backbone.View.extend({
       "onclick=document.getElementById('hiddenVal').innerHTML='" +  this.model.get('id') + "'; " + 
       "id='deleteMovie'><img src='http://www.pdfdu.com/images/del.png' width='18' height='18'></img>" +
       "</a></p></div>";
-    movieRenderString += "<div><img src='" + this.model.get('img_url') + "'></img></div>";
-		
-    var myNavBarView = new MovieApp.Views.NavBarView();
-    $(this.el).html(myNavBarView.render().el);
+    movieRenderString += "<div><img src='" + this.model.get('img_url') + "'></img></div>";    
     
-    $(this.el).append(movieRenderString);	
+    $(this.el).html(movieRenderString);	
 
     return this;
   },
 
-  go_index : function() {
-    window.router.navigate("", {trigger: true});
-  },
+  // go_index : function() {
+  //   window.router.navigate("", {trigger: true});
+  // },
   
-  go_my_movie : function() {
-    window.router.navigate("myMovies", {trigger: true});
-  },
+  // go_my_movie : function() {
+  //   window.router.navigate("myMovies", {trigger: true});
+  // },
 
-  go_logout : function() {
-    window.router.navigate("", {trigger: true});
-  }
+  // go_logout : function() {
+  //   window.router.navigate("", {trigger: true});
+  // }
 
 });

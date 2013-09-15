@@ -32,7 +32,10 @@ MovieApp.Views.UserMoviesView = Backbone.View.extend({
 		movieRenderString += "</table>";
 		movieRenderString += "<label id='hiddenVal' style='visibility: hidden;'></label>";
 
-		$(current.el).html(movieRenderString);
+		var myNavBarView = new MovieApp.Views.NavBarView();
+    	$(this.el).html(myNavBarView.render().el);
+    	
+		$(current.el).append(movieRenderString);
 
 		return this;
 	},	
