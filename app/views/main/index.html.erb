@@ -6,55 +6,9 @@
   <%= stylesheet_link_tag 'bootstrap.css' %> 
 </head>
 <body>
-  <!--Start of nav bar-->
-  <div class="navbar navbar-inverse">  
-    <div class="navbar-inner">  
-      <div class="container">  
-        <ul class="nav">  
-        <!--navigation does here-->  
-          <li class="brand">  
-            Super Movie App
-          </li>
-
-          <li class="active"> 
-              <a href="javascript: window.location='';">Index</a>
-          </li>
-
-
-          <li class="active">
-              <a href="#create">New</a>
-          </li>
-
-          <li class="active">
-              <a href="#myMovies">My Movies</a>
-          </li>
-
-         
-        </ul>
-
-        <ul class="nav pull-right">  
-          <li>
-
-          </li>     
-          <li>
-            <a href="logout.html">Logout</a>
-          </li>
-        </ul>
-      </div>  
-    </div>  
-  </div>   
-
-  <!--End of nav bar-->
-
-  <!--Start of body-->
-
-  <p>Signed in successfully!</p>
-  <% if logged_in %>
-  Access Token: <%=  token_str %>
-  <% else %>
-  <% end %>
-
-  <div id='pageBody'></div>
+  <div id='pageBody'>
+    <div id='navBar'></div>
+  </div>
 
 </body>
 </html>
