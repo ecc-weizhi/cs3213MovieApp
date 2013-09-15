@@ -7,7 +7,7 @@ MovieApp.Views.MovieSimpleView = Backbone.View.extend({
   },
 
   render: function() {
-    $(this.el).html("<div class='MovieSimple'><p>" + this.model.get("title") + '</p><img src="'+ this.model.get("img_url") +'"></div>');
+    $(this.el).html("<a href='#movie/"+this.model.id+"'><div class='MovieSimple' ><p><b>" + this.model.get("title") + '</b></p><br><img src="'+ this.model.get("img_url") +' width="200"></div></a>');
     return this;
   },
 

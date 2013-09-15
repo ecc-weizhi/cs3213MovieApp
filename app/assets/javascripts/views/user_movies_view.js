@@ -8,7 +8,7 @@ MovieApp.Views.UserMoviesView = Backbone.View.extend({
 
 	render : function() {
 		var current = this;
-		var movieRenderString = "<table cellpadding='20'>";
+		var movieRenderString = "<table cellpadding='10'>";
 		var count = 0;
 
 		this.collection.each(function(movieModel) {
@@ -18,7 +18,7 @@ MovieApp.Views.UserMoviesView = Backbone.View.extend({
 				movieRenderString += "<tr>";
 			
 			if(count < 4) {
-				movieRenderString += "<td>" + userMovieView.render().$el.html() + "</td>";
+				movieRenderString += "<td width=25% style='vertical-align:top;'>" + userMovieView.render().$el.html() + "</td>";
 				count++;	
 			}				
 
