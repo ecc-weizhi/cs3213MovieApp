@@ -16,13 +16,16 @@ MovieApp.Views.MovieCreateView = Backbone.View.extend({
   render: function() {
     var myNavBarView = new MovieApp.Views.NavBarView();
     $(this.el).html(myNavBarView.render().el);
-    $(this.el).append("<div id='movieForm'><form name='movie' method='POST'>");
-    $(this.el).append("<table cellpadding='20'><tr>");
-    $(this.el).append("<td colspan=2><h1>Create new movie</h1></td>");
-    $(this.el).append("<tr><td>Title: </td><td><input type='text' name='movie[title]' id='movie_title'></td></tr>");
-    $(this.el).append("<tr><td>Summary: </td><td> <input type='text' name='movie[summary]' id='summary'></td></tr>");
-    $(this.el).append("<tr><td>Image: </td><td> <input type='file' name='movie[img]' id='movie_img'></td>/tr>");
-    $(this.el).append("<tr><td colpsan=2  style='text-align: center;'><button class='btn btn-primary' id='Create' type='button'>Create</button></td></tr></table></form></div>");
+    var renderString = "<div id='movieForm'><form name='movie' method='POST'>";
+    renderString += "<table cellpadding='20'><tr>";
+    renderString += "<table cellpadding='20'><tr>";
+    renderString += "<td colspan=2><h1>Create new movie</h1></td></tr>";
+    renderString += "<tr><td>Title: </td><td><input type='text' name='movie[title]' id='movie_title'></td></tr>";
+    renderString += "<tr><td>Summary: </td><td> <input type='text' name='movie[summary]' id='summary'></td></tr>";
+    renderString += "<tr><td>Image: </td><td> <input type='file' name='movie[img]' id='movie_img'></td>/tr>";
+    renderString += "<tr><td colpsan=2  style='text-align: center;'><button class='btn btn-primary' id='Create' type='button'>Create</button></td></tr></table></form></div>";
+    $(this.el).append(renderString);
+    
 
     return this;
   },
