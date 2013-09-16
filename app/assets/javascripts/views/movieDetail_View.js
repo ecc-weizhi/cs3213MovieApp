@@ -1,6 +1,8 @@
 MovieApp.Views.MovieDetailView = Backbone.View.extend({
   //This view correspond to the detailed movie view (with review etc)
   el: '#pageBody', 
+  movieID: null,
+  myReviewCollection: null,
 
   initialize: function(id){
     //we keep a variable pointing to "this" because "this" can change later
@@ -25,7 +27,8 @@ MovieApp.Views.MovieDetailView = Backbone.View.extend({
   events: {
     "click .IndexNav": "go_index",
     "click .MyMoviesNav": "go_my_movie",
-    "click .LogoutNav": "go_logout"
+    "click .LogoutNav": "go_logout",
+    "click #save": "createReview",
   },
 
   render: function() {
@@ -42,10 +45,20 @@ MovieApp.Views.MovieDetailView = Backbone.View.extend({
     $(this.el).append("<p> Updated at:" + this.myMovie.get("updated_at") + "</p>");
     $(this.el).append("</div>");
 
+    console.log(this.myMovie);
+    this.movieID = this.myMovie.get("id");
+    var renderString = "";
+
     this.myReviewCollection.each(function(myReview) {
       var myReviewView = new MovieApp.Views.ReviewView(myReview);
-      $(current.el).append(myReviewView.render().el);
+      renderString += myReviewView.render().$el.html();
+
     });
+
+    var reviewFormView = new MovieApp.Views.ReviewForm();
+    renderString += reviewFormView.render().$el.html();
+
+    $(this.el).append(renderString);
  
     return this;
   },
@@ -66,5 +79,22 @@ MovieApp.Views.MovieDetailView = Backbone.View.extend({
 
   go_logout : function() {
     window.router.navigate("", {trigger: true});
-  }
+  },
+
+  createReview: function() {           
+     
+       var score = this.$el.find("#score").val();
+       var comment = this.$el.find("#comment").val();    
+     var newReview = new MovieApp.Models.MovieReviewModel({movie_id: this.movieID, url: 'http://cs3213.herokuapp.com/movies/'+this.movieID+ '/reviews.json'});
+    
+     newReview.save({score: score, comment: comment, "access_token": gon.token});
+      
+     this.myReviewCollection.add(newReview);
+    //, {
+                //success: function(model, success){
+                //that.collection.add(success);
+            //}
+     //});
+    window.router.navigate("", {trigger : true});    
+  },  
 })
