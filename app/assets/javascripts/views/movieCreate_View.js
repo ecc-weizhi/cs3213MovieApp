@@ -44,6 +44,7 @@ MovieApp.Views.MovieCreateView = Backbone.View.extend({
 			obj["title"] = document.getElementById("titleInput").value;
 			obj["summary"] = document.getElementById("summaryInput").value;
 			obj["img"] = reader.result;
+			obj["access_token"] = gon.token;
 			
 			console.log(obj);
 			var NewMovie = Backbone.Model.extend({url: "http://cs3213.herokuapp.com/movies.json"});
