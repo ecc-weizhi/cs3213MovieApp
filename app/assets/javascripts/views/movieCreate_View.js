@@ -46,7 +46,8 @@ MovieApp.Views.MovieCreateView = Backbone.View.extend({
 			obj["img"] = reader.result;
 			
 			console.log(obj);
-			var myNewMovie = new MovieApp.Models.newMovieModel();
+			var NewMovie = Backbone.Model.extend({url: "http://cs3213.herokuapp.com/movies.json"});
+			var myNewMovie = new NewMovie();
     console.log("here?");
     	myNewMovie.set(obj);
     	
