@@ -18,7 +18,6 @@ MovieApp.Views.MovieCreateView = Backbone.View.extend({
     $(this.el).html(myNavBarView.render().el);
     var renderString = "<div id='movieForm'><form name='movie' method='POST'>";
     renderString += "<table cellpadding='20'><tr>";
-    renderString += "<table cellpadding='20'><tr>";
     renderString += "<td colspan=2><h1>Create new movie</h1></td></tr>";
     renderString += "<tr><td>Title: </td><td><input type='text' name='movie[title]' id='movie_title'></td></tr>";
     renderString += "<tr><td>Summary: </td><td> <input type='text' name='movie[summary]' id='summary'></td></tr>";
