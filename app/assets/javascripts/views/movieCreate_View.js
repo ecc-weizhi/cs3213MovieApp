@@ -35,11 +35,20 @@ MovieApp.Views.MovieCreateView = Backbone.View.extend({
   	var file = document.getElementById('imgInput').files[0];
   	console.log(file);
   	
+  	var reader = new FileReader();
+    
+    reader.onload = (function(file) {
+        return function(e) {
+            alert("done");
+        };
+    })(file);
+    reader.readAsDataURL(file);
+  	/*
   	var formData = new FormData();
   	formData.append('file', file);
   	
   	console.log(formData);
-  	
+  	*/
   	/*
     var reader = new FileReader();
   	
