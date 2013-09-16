@@ -16,6 +16,7 @@
 //= require underscore
 //= require backbone
 //= require movie_app
+//= require jquery.form.min
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

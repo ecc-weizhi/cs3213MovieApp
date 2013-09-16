@@ -1,3 +1,4 @@
+
 window.MovieApp = {
   Models: {},
   Collections: {},
@@ -5,6 +6,7 @@ window.MovieApp = {
   Routers: {},
 
   initialize: function(){
+    
     window.router = new MovieApp.Routers.MainRouter();
     Backbone.history.start();
   }
