@@ -84,17 +84,27 @@ MovieApp.Views.MovieDetailView = Backbone.View.extend({
   createReview: function() {           
      
        var score = this.$el.find("#score").val();
-       var comment = this.$el.find("#comment").val();    
-     var newReview = new MovieApp.Models.MovieReviewModel({movie_id: this.movieID, url: 'http://cs3213.herokuapp.com/movies/'+this.movieID+ '/reviews.json'});
-    
-     newReview.save({score: score, comment: comment, "access_token": gon.token});
+       var comment = this.$el.find("#comment").val();
       
-     this.myReviewCollection.add(newReview);
-    //, {
+      if(!isNaN(score)){ 
+              
+          if(score>1 && score <100){
+
+            var newReview = new MovieApp.Models.MovieReviewModel({movie_id: this.movieID, url: 'http://cs3213.herokuapp.com/movies/'+this.movieID+ '/reviews.json'});
+            newReview.save({score: score, comment: comment, "access_token": gon.token});
+      
+            this.myReviewCollection.add(newReview);
+            window.router.navigate("", {trigger : true}); 
+          }
+          else { alert ("Score must be between 1-100");}
+      }
+      else{alert ("Score must be numeric");}
+
+    //,}
                 //success: function(model, success){
                 //that.collection.add(success);
             //}
      //});
-    window.router.navigate("", {trigger : true});    
+       
   },  
 })

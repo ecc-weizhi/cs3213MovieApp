@@ -55,7 +55,7 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
             var userMoviesView = new MovieApp.Views.UserMoviesView(current.tempCollection);
         }
       }
-    }); 
+    });
   },
 
   editMovie : function(id) {
