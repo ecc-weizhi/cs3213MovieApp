@@ -13,7 +13,7 @@ MovieApp.Views.IndexView = Backbone.View.extend({
 
   events: {
     //create an event "click on CreateMovie class" will trigger function "create_new_movie" 
-    "click .CreateMovie": "create_new_movie",
+    "click .CreateMovieNav": "create_new_movie",
     "click .IndexNav": "go_index",
     "click .MyMoviesNav": "go_my_movie",
     "click .LogoutNav": "go_logout"

@@ -12,8 +12,9 @@ MovieApp.Views.NavBarView = Backbone.View.extend({
     str = str.concat('<div class="container">');
     str = str.concat('<ul class="nav">');
     str = str.concat('<li class="brand">Super Movie App</li>');
-    str = str.concat('<li id="abc" class="active"><a class="IndexNav">Index</a></li>');
+    str = str.concat('<li class="active"><a class="IndexNav">Index</a></li>');
     str = str.concat('<li class="active"><a class="MyMoviesNav">My Movies</a></li>');
+    str = str.concat('<li class="active"><a class="CreateMovieNav">Create Movie</a></li>');
     str = str.concat('</ul>');
     str = str.concat('<ul class="nav pull-right">');
     str = str.concat('<li></li>');
