@@ -49,6 +49,7 @@ MovieApp.Views.MovieCreateView = Backbone.View.extend({
 			var myNewMovie = new MovieApp.Models.newMovieModel();
     
     	myNewMovie.set(obj);
+    	console.log("here?");
     	console.log(myNewMovie);
     	
     	myNewMovie.save({success: function(){ alert("win"); } });
