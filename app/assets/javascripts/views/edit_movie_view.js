@@ -38,7 +38,7 @@ MovieApp.Views.EditMovieView = Backbone.View.extend({
 			      alert("Could not update movie"); 
 		      },
 		      success: function(msg) {
-		   	    window.router.navigate("myMovies/new", {trigger: true});
+		   	    window.router.navigate("myMovies", {trigger: true});
 		      },
 		      beforeSubmit: function(arr, $form, options) { 
 		       	if($("#movie_title").val() == "") {
@@ -66,8 +66,7 @@ MovieApp.Views.EditMovieView = Backbone.View.extend({
 	}, 
 	
 	returnToUserMovies : function() {
-		window.router.navigate("myMovies/new", {trigger : true});
+		window.router.navigate("myMovies", {trigger : true});
 	},
-
 
 });

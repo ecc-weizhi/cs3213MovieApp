@@ -1,13 +1,13 @@
 MovieApp.Routers.MainRouter = Backbone.Router.extend({
   //This file will list which methods to perform base on the url.
-  pageCount: 1,
+  pageNo: 1,
   tempCollection: Backbone.Collection,
 
   routes: {
     "":                 "index",    // #help
     "movie/:id":        "movie",  // #search/kiwis
     "create":	"createMovie",
-    "myMovies/:type" : "getUserMovies",
+    "myMovies" : "getUserMovies",
     "deleteMovie/:id" : "deleteMovie",
     "editMovie/:id" : "editMovie",
     "logout": "userLogout",
@@ -28,16 +28,14 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
     myMovieCreateView.render();
   },
 
-  getUserMovies : function(type) {
+  getUserMovies : function() {
     var username = this.getUserName(gon.user_email);
     var current =  this;       
 
-    if(type == "new") {
+    if(current.pageNo == 1) 
       current.tempCollection = new Backbone.Collection;
-      current.pageCount = 1;
-    }         
 
-    var movieCollection = new MovieApp.Collections.MovieCollection(this.pageCount);
+    var movieCollection = new MovieApp.Collections.MovieCollection(this.pageNo);
     movieCollection.fetch({
       success : function() {
         if(movieCollection.length != 0) {
@@ -47,10 +45,11 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
               current.tempCollection.push(aMovie);
           });
 
-          current.pageCount += 1;
-          window.router.navigate("myMovies/" + current.pageCount, {trigger : true});
+          current.pageNo++;
+          current.getUserMovies();
 
-        } else {          
+        } else {     
+            current.pageNo = 1;     
             var userMoviesView = new MovieApp.Views.UserMoviesView(current.tempCollection);
         }
       }

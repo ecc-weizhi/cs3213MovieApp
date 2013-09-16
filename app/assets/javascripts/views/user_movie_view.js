@@ -5,11 +5,6 @@ MovieApp.Views.UserMovieView = Backbone.View.extend({
     this.model = movieModel;
   },
 
-  // events: {
-  //   "click .IndexNav": "go_index",
-  //   "click .MyMoviesNav": "go_my_movie",
-  //   "click .LogoutNav": "go_logout"
-  // },
 
   render : function() {
     var avg_score = new Number(this.model.get('avg_score'));
@@ -34,17 +29,5 @@ MovieApp.Views.UserMovieView = Backbone.View.extend({
 
     return this;
   },
-
-  // go_index : function() {
-  //   window.router.navigate("", {trigger: true});
-  // },
-  
-  // go_my_movie : function() {
-  //   window.router.navigate("myMovies", {trigger: true});
-  // },
-
-  // go_logout : function() {
-  //   window.router.navigate("", {trigger: true});
-  // }
 
 });

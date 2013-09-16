@@ -37,6 +37,8 @@ MovieApp.Views.IndexView = Backbone.View.extend({
     "click .LogoutNav": "go_logout",
     "click .Next": "increasePageNo",
     "click .Previous": "reducePageNo",
+    "click .MovieSimpleLink": "show_movie_detail",
+    "click .MovieSimpleImg": "show_movie_detail",
   },
 
   render : function() {
@@ -111,10 +113,24 @@ MovieApp.Views.IndexView = Backbone.View.extend({
   },
   
   go_my_movie : function() {
-    window.router.navigate("myMovies/new", {trigger: true});
+    window.router.navigate("myMovies", {trigger: true});
   },
 
   go_logout : function() {
     window.location="logout.html";
+  },
+
+  show_movie_detail: function(e) {
+    var target = $(e.target).parent();
+    var movieID = 0;
+
+    if(target[0].id != "")
+      movieID = target[0].id;
+    else {
+      movieID = target.parent()[0].id;
+    }
+
+    window.router.navigate("movie/" + movieID, {trigger: true});
   }
+
 })
