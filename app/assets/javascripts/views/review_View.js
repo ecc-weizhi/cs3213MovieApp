@@ -14,7 +14,7 @@ MovieApp.Views.ReviewView = Backbone.View.extend({
     $(this.el).append("updated at: "+ this.model.get("updated_at"));
 
     if(this.model.get("user")["username"] == this.getUserName(gon.user_email))
-      $(this.el).append("<br /><button id='del'>Delete</button>");
+      $(this.el).append("<br /><button class='btn btn-primary' id='del'>Delete</button>");
     
     $(this.el).append("</p></div>");
     //$(this.el).html("<div class='MovieSimple'><p>" + this.model.get("title") + '</p><img src="'+ this.model.get("img_url") +'"></div>');

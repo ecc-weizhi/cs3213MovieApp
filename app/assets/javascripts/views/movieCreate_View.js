@@ -7,7 +7,7 @@ MovieApp.Views.MovieCreateView = Backbone.View.extend({
 
   events: {
     //create an event "click on Create class" will trigger function "submit_movie_info" 
-    "click .Create": "submit_movie_info",
+    "click #Create": "submit_movie_info",
     "click .IndexNav": "go_index",
     "click .MyMoviesNav": "go_my_movie",
     "click .LogoutNav": "go_logout"
@@ -18,7 +18,7 @@ MovieApp.Views.MovieCreateView = Backbone.View.extend({
     $(this.el).html(myNavBarView.render().el);
 
     $(this.el).append("<h1>Create new movie</h1>");
-    $(this.el).append("<div id='movieForm'><form name='movie' method='POST'>Title: <input type='text' name='movie[title]' id='movie_title'><br>Summary: <input type='text' name='movie[summary]' id='summary'><br>img: <input type='file' name='movie[img]' id='movie_img'><br><button class='Create' type='button'>Create</button></form></div>");
+    $(this.el).append("<div id='movieForm'><form name='movie' method='POST'>Title: <input type='text' name='movie[title]' id='movie_title'><br>Summary: <input type='text' name='movie[summary]' id='summary'><br>img: <input type='file' name='movie[img]' id='movie_img'><br><button class='btn btn-primary' id='Create' type='button'>Create</button></form></div>");
 
     return this;
   },
