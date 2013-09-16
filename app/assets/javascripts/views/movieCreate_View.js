@@ -36,13 +36,39 @@ MovieApp.Views.MovieCreateView = Backbone.View.extend({
   	console.log(file);
   	
   	var reader = new FileReader();
+   
+    reader.onload = (function (){
+    	alert("done");
+    	console.log(reader.result);
+    	var obj = {};
+			obj["title"] = document.getElementById("titleInput").value;
+			obj["summary"] = document.getElementById("summaryInput").value;
+			obj["img"] = reader.result;
+			
+			console.log(obj);
+			var myNewMovie = new MovieApp.Models.newMovieModel();
     
-    reader.onload = (function(file) {
+    	myNewMovie.set(obj);
+    	console.log(myNewMovie);
+    	
+    	myNewMovie.save(obj,  {success: function(){ alert("win"); } });
+			
+    });
+    
+    
+    
+    /*(function(reader) {
         return function(e) {
             alert("done");
+            var obj = {};
+    				obj["title"] = document.getElementById("titleInput").value;
+    				obj["summary"] = document.getElementById("summaryInput").value;
+    				obj["img"] = ;
         };
-    })(file);
+    })(reader);*/
     reader.readAsDataURL(file);
+    
+    
   	/*
   	var formData = new FormData();
   	formData.append('file', file);
