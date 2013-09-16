@@ -10,7 +10,6 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
     "myMovies/:type" : "getUserMovies",
     "deleteMovie/:id" : "deleteMovie",
     "editMovie/:id" : "editMovie",
-    "updateMovie/:id/:title/:summary" : "updateMovie",
     "logout": "userLogout",
 
   },
@@ -98,28 +97,6 @@ MovieApp.Routers.MainRouter = Backbone.Router.extend({
       }
     });
   },
-
-  updateMovie : function(id,title,summary) {
-    alert(title + summary);
-   $.ajax({
-        data: {"access_token": gon.token, "title": title, "summary": summary, "img_url": "sdasdasda"},
-        url: 'https://cs3213.herokuapp.com/movies/' + id + '.json',
-        type: 'PUT',
-        success: function(result) {
-            alert('The movie ' +  title + ' was updated successfully!');
-           
-
-            var updatedModel = new MovieApp.Models.MovieModel({"id":id});
-
-            updatedModel.fetch({
-              success : function() {
-                alert(updatedModel.get('title'));
-                //window.router.navigate("myMovies", {trigger: true});
-              }
-            });   
-        }
-    }); 
-  }, 
 
   userLogout : function(){
     window.router.navigate("logout", {trigger: true});
