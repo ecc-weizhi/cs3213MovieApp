@@ -16,8 +16,8 @@ MovieApp.Views.MovieCreateView = Backbone.View.extend({
   render: function() {
     var myNavBarView = new MovieApp.Views.NavBarView();
     $(this.el).html(myNavBarView.render().el);
-    var renderString = "<div id='movieForm'><form name='movie' method='POST'>";
-    renderString += "<table cellpadding='20'><tr>";
+    var renderString = "<div style='margin-left: 20px;' id='movieForm'><form name='movie' method='POST'>";
+    renderString += "<table><tr>";
     renderString += "<td colspan=2><h1>Create new movie</h1></td></tr>";
     renderString += "<tr><td>Title: </td><td><input type='text' name='movie[title]' id='movie_title'></td></tr>";
     renderString += "<tr><td>Summary: </td><td> <input type='text' name='movie[summary]' id='summary'></td></tr>";
@@ -30,7 +30,8 @@ MovieApp.Views.MovieCreateView = Backbone.View.extend({
   },
 
   submit_movie_info: function(e){
-  	$(e.target).parent().ajaxSubmit({
+    var selector = $(e.target).parent().parent().parent().parent().parent();
+  	 selector.ajaxSubmit({
       url:  "http://cs3213.herokuapp.com/movies.json",
       dataType: 'json',
       data: {"access_token": gon.token},
