@@ -88,7 +88,7 @@ MovieApp.Views.MovieDetailView = Backbone.View.extend({
       
       if(!isNaN(score)){ 
               
-          if(score>1 && score <100){
+          if(score>=1 && score <=100){
 
             var newReview = new MovieApp.Models.MovieReviewModel({movie_id: this.movieID, url: 'http://cs3213.herokuapp.com/movies/'+this.movieID+ '/reviews.json'});
             newReview.save({score: score, comment: comment, "access_token": gon.token});
